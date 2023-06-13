@@ -41,6 +41,24 @@ DISCLAIMER: This project was forked from the [original one](https://github.com/h
    ```
    Now you have one .js file and one .css file in the `build/static/` directory
 
+<br/>
+
+## Creating a new component (follwing [this](https://www.youtube.com/watch?v=TEtPUjBlM2M) webinar)
+
+### General interesting informations on the framework
+
+- In index.html the application will get initialized on domReady and with the function ```var ls = new LabelStudio("label-studio", lsfConfig);``` and the div ref ```<div id="label-studio"></div>``` it can be included in every project. Also you need to setup the event listeners ```ls.on("storageInitialized", (store) => ...)``` to enable updating annotations, drawing regions and storage initialization. Css files can be imported normally in the css files.
+- in src/env/development.js you can choose the element that you want to have rendered in your dev environment (e.g. ```const data = LayoutHorizontal;```)
+- src/examples is just a copy of /examples (it will be copied on npm start). The folder src/examples can be used for development. Be careful: it is also gitignored. 
+- The frontend uses Webpack as a module bundler, to enable hot module replacement and module bundling. It puts all of your assets, including Javascript, images, fonts, and CSS in a dependency graph. Webpack is used to run and build the app. It also provides dead asset elimination, so you only build elements into your dist/ folder that your application actually needs. Furthermore it provides easier code splitting. 
+
+### Process to create a new component
+TODO: genaue anleitung aus notizen (label-studio setup.txt)
+
+
+
+<br/>
+
 ## Usage
 
 **With Webpack**
