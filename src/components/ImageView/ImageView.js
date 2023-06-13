@@ -894,14 +894,11 @@ export default observer(
       ) || !isFF(FF_LSDV_4583_6);
 
       return (
-        <ObjectTag
-          item={item}
-          className={wrapperClasses.join(' ')}
-        >
+        <ObjectTag item={item} className={wrapperClasses.join(' ')}>
           {paginationEnabled ? (
             <div className={styles.pagination}>
               <Pagination
-                size='small'
+                size="small"
                 outline={false}
                 align="left"
                 noPadding
@@ -946,22 +943,16 @@ export default observer(
                 size={item.canvasSize}
               />
             ) : (
-              <div
-                className={[
-                  styles.frame,
-                  ...imagePositionClassnames,
-                ].join(' ')}
-                style={item.canvasSize}
-              >
+              <div className={[styles.frame, ...imagePositionClassnames].join(' ')} style={item.canvasSize}>
                 <img
                   ref={ref => {
                     item.setImageRef(ref);
                     this.imageRef.current = ref;
                   }}
-                  loading={(isFF(FF_DEV_3077) && !item.lazyoff) && 'lazy'}
+                  loading={null}
                   style={item.imageTransform}
                   src={item.currentSrc}
-                  onLoad={(e) => {
+                  onLoad={e => {
                     item.updateImageSize(e);
                     item.currentImageEntity.setImageLoaded(true);
                   }}
@@ -982,15 +973,15 @@ export default observer(
             )}
             {/* @todo this is dirty hack; rewrite to proper async waiting for data to load */}
             {stageLoading || !toolsReady ? (
-              <div className={styles.loading}><LoadingOutlined /></div>
-            ) : (imageIsLoaded) ? (
+              <div className={styles.loading}>
+                <LoadingOutlined />
+              </div>
+            ) : imageIsLoaded ? (
               <Stage
                 ref={ref => {
                   item.setStageRef(ref);
                 }}
-                className={[styles['image-element'],
-                  ...imagePositionClassnames,
-                ].join(' ')}
+                className={[styles['image-element'], ...imagePositionClassnames].join(' ')}
                 width={item.canvasSize.width}
                 height={item.canvasSize.height}
                 scaleX={item.zoomScale}
@@ -1006,7 +997,7 @@ export default observer(
                     this.crosshairRef.current.updateVisibility(true);
                   }
                 }}
-                onMouseLeave={(e) => {
+                onMouseLeave={e => {
                   if (this.crosshairRef.current) {
                     this.crosshairRef.current.updateVisibility(false);
                   }
@@ -1031,8 +1022,7 @@ export default observer(
                 onMouseDown={this.handleMouseDown}
                 onMouseMove={this.handleMouseMove}
                 onMouseUp={this.handleMouseUp}
-                onWheel={item.zoom ? this.handleZoom : () => {
-                }}
+                onWheel={item.zoom ? this.handleZoom : () => {}}
               >
                 {/* Hack to keep stage in place when there's no regions */}
                 {regions.length === 0 && (
@@ -1054,7 +1044,9 @@ export default observer(
                       useLayers={isBrush === false}
                       suggestion={isSuggestion}
                     />
-                  ) : <Fragment key={groupName} />;
+                  ) : (
+                    <Fragment key={groupName} />
+                  );
                 })}
                 <Selection
                   item={item}
