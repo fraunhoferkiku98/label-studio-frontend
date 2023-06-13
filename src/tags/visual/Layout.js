@@ -5,6 +5,9 @@ import { observer } from 'mobx-react';
 import Registry from '../../core/Registry';
 import { guidGenerator } from '../../utils/unique';
 
+import Tree from '../../core/Tree';
+import Types from '../../core/Types';
+
 /**
  * The `Style` tag is used in combination with the View tag to apply custom CSS properties to the labeling interface. See the [CSS Reference](https://developer.mozilla.org/en-US/docs/Web/CSS/Reference) on the MDN page for a full list of available properties that you can reference. You can also adjust default Label Studio CSS classes. Use the browser developer tools to inspect the element on the UI and locate the class name, then specify that class name in the `Style` tag.
  *
@@ -65,10 +68,62 @@ const LayoutModel = types.model('LayoutModel', {
   id: types.optional(types.identifier, guidGenerator),
   type: 'layout',
   value: types.optional(types.string, ''),
+  children: Types.unionArray([
+    'view',
+    'layout',
+    'header',
+    'labels',
+    'label',
+    'table',
+    'taxonomy',
+    'choices',
+    'choice',
+    'collapse',
+    'datetime',
+    'number',
+    'rating',
+    'ranker',
+    'rectangle',
+    'ellipse',
+    'polygon',
+    'keypoint',
+    'brush',
+    'magicwand',
+    'rectanglelabels',
+    'ellipselabels',
+    'polygonlabels',
+    'keypointlabels',
+    'brushlabels',
+    'hypertextlabels',
+    'timeserieslabels',
+    'text',
+    'audio',
+    'image',
+    'hypertext',
+    'richtext',
+    'timeseries',
+    'audioplus',
+    'list',
+    'dialog',
+    'textarea',
+    'pairwise',
+    'style',
+    'label',
+    'relations',
+    'filter',
+    'timeseries',
+    'timeserieslabels',
+    'pagedview',
+    'paragraphs',
+    'paragraphlabels',
+    'video',
+    'videorectangle',
+    'ranker',
+  ]),
 });
 
 const HtxStyle = observer(({ item }) => {
-  return <div>heheheh</div>;
+  return <div>{Tree.renderChildren(item, item.annotation)}</div>;
 });
 
 Registry.addTag('layout', LayoutModel, HtxStyle);
