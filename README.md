@@ -11,11 +11,35 @@ Frontend, as its name suggests, is the frontend library developed using React an
 
 <br/>
 
-## Install
 
-```bash
-npm install @heartexlabs/label-studio
-```
+
+## Development
+
+DISCLAIMER: This project was forked from the [original one](https://github.com/heartexlabs/label-studio-frontend).
+
+1. Clone the repository
+   ```bash
+   git clone https://github.com/fraunhoferkiku98/label-studio-frontend.git
+   cd label-studio-frontend
+   ```
+
+2. Install required dependencies
+   ```bash
+   yarn install
+   ```
+
+3. Start the development server
+   ```bash
+   yarn start
+   ```
+
+4. Check different ways to initiate the development server config & task data in `src/env/development.js`, changing the `data` variable is a good place to start.
+
+5. After you make changes and ready to use it in production, you need to create a production build
+   ```bash
+   npm run build-bundle
+   ```
+   Now you have one .js file and one .css file in the `build/static/` directory
 
 ## Usage
 
@@ -91,34 +115,6 @@ import 'label-studio/build/static/css/main.css';
   });
 </script>
 ```
-
-## Development
-
-1. Clone the repository
-   ```bash
-   git clone git@github.com:heartexlabs/label-studio-frontend.git
-   # or: git clone https://github.com/heartexlabs/label-studio-frontend.git
-   cd label-studio-frontend
-   ```
-
-2. Install required dependencies
-   ```bash
-   npm install
-   ```
-
-3. Start the development server
-   ```bash
-   npm run start
-   ```
-
-4. Check different ways to initiate the development server config & task data in `src/env/development.js`, changing the `data` variable is a good place to start.
-
-5. After you make changes and ready to use it in production, you need to create a production build
-   ```bash
-   npm run build-bundle
-   ```
-   Now you have one .js file and one .css file in the `build/static/` directory
-
 ## Label Studio for Teams, Startups, and Enterprises :office:
 
 Label Studio for Teams is our enterprise edition (cloud & on-prem), that includes a data manager, high-quality baseline models, active learning, collaborators support, and more. Please visit the [website](https://www.heartex.com/) to learn more.
