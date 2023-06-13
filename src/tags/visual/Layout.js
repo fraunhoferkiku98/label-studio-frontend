@@ -61,14 +61,11 @@ import { guidGenerator } from '../../utils/unique';
  * @param {string} `.<className>`  - Reference the className specified in the View tag to apply to a section of the labeling configuration.
  * @param {string} [CSS property]  - CSS property and value to apply.
  */
-const LayoutModel = types.model(
-    "LayoutModel",
-    {
-        id: types.optional(types.identifier, guidGenerator),
-        type: 'layout',
-        value: types.optional(types.string, ''),
-    },
-);
+const LayoutModel = types.model('LayoutModel', {
+  id: types.optional(types.identifier, guidGenerator),
+  type: 'layout',
+  value: types.optional(types.string, ''),
+});
 
 const HtxStyle = observer(({ item }) => {
   return <div>heheheh</div>;

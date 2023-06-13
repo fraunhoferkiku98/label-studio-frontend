@@ -6,4 +6,4 @@ import { StyleModel } from './Style';
 import { FilterModel } from './Filter';
 import { LayoutModel } from './Layout';
 
-export { CollapseModel, DialogModel, HeaderModel, ViewModel, StyleModel, FilterModel, LayoutModel};
+export { CollapseModel, DialogModel, HeaderModel, ViewModel, StyleModel, FilterModel, LayoutModel };
