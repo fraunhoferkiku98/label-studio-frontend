@@ -68,6 +68,7 @@ const LayoutModel = types.model('LayoutModel', {
   id: types.optional(types.identifier, guidGenerator),
   type: 'layout',
   value: types.optional(types.string, ''),
+  layout: types.optional(types.string, 'horizontal'),
   children: Types.unionArray([
     'view',
     'layout',
@@ -122,8 +123,17 @@ const LayoutModel = types.model('LayoutModel', {
   ]),
 });
 
+const styles = {
+  horizontal: {
+    display: 'flex',
+    alignItems: 'start',
+    gap: '30px',
+  },
+  vertical: {},
+};
+
 const HtxStyle = observer(({ item }) => {
-  return <div>{Tree.renderChildren(item, item.annotation)}</div>;
+  return <div style={styles[item.layout] ?? styles.horizontal}>{Tree.renderChildren(item, item.annotation)}</div>;
 });
 
 Registry.addTag('layout', LayoutModel, HtxStyle);
