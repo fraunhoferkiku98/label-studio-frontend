@@ -50,7 +50,8 @@ DISCLAIMER: This project was forked from the [original one](https://github.com/h
 - In src/env/development.js you can choose the element that you want to have rendered in your dev environment (e.g. ```const data = LayoutHorizontal;```)
 - src/examples is just a copy of /examples (it will be copied on npm start). The folder src/examples can be used for development. Be careful: it is also gitignored. 
 - The frontend uses Webpack as a module bundler, to enable hot module replacement and module bundling. It puts all of your assets, including Javascript, images, fonts, and CSS in a dependency graph. Webpack is used to run and build the app. It also provides dead asset elimination, so you only build elements into your dist folder that your application actually needs. Furthermore it provides easier code splitting. 
-- The application uses mobx-state-tree for application state management
+- The application uses mobx-state-tree for application state management and its overserver functions that automatically makes the wrapped components reactive to changes in its MobX observable values. These changes can be identified more fine-grained than with Reacts native approach, that can become cumbersome in deeply nested objects.
+- In this stack MobX simplifies state management and reactive updates, while React efficiently renders the UI based on the changes detected by MobX. 
 
 ## Creating a new component (following [this](https://www.youtube.com/watch?v=TEtPUjBlM2M) webinar)
 
