@@ -1,0 +1,9 @@
+<View>
+  <Layout layout="horizontal">
+    <Image name="img" value="$image"></Image>
+    <RectangleLabels name="tag" toName="img" fillOpacity="0.5" strokeWidth="5">
+      <Label value="Planet"></Label>
+      <Label value="Apfelbaum" background="blue"></Label>
+    </RectangleLabels>
+  </Layout>
+</View>
