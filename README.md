@@ -43,19 +43,31 @@ DISCLAIMER: This project was forked from the [original one](https://github.com/h
 
 <br/>
 
-## Creating a new component (follwing [this](https://www.youtube.com/watch?v=TEtPUjBlM2M) webinar)
 
-### General interesting informations on the framework
+## General interesting informations on the framework
 
-- In index.html the application will get initialized on domReady and with the function ```var ls = new LabelStudio("label-studio", lsfConfig);``` and the div ref ```<div id="label-studio"></div>``` it can be included in every project. Also you need to setup the event listeners ```ls.on("storageInitialized", (store) => ...)``` to enable updating annotations, drawing regions and storage initialization. Css files can be imported normally in the css files.
-- in src/env/development.js you can choose the element that you want to have rendered in your dev environment (e.g. ```const data = LayoutHorizontal;```)
+- In index.html the application will get initialized on domReady and with the function ```var ls = new LabelStudio("label-studio", lsfConfig);``` and the div ref ```<div id="label-studio"></div>```. It can be included in every project. Also you need to setup the event listeners ```ls.on("storageInitialized", (store) => ...)``` to enable updating annotations, drawing regions and storage initialization. Css files can be imported as usual.
+- In src/env/development.js you can choose the element that you want to have rendered in your dev environment (e.g. ```const data = LayoutHorizontal;```)
 - src/examples is just a copy of /examples (it will be copied on npm start). The folder src/examples can be used for development. Be careful: it is also gitignored. 
-- The frontend uses Webpack as a module bundler, to enable hot module replacement and module bundling. It puts all of your assets, including Javascript, images, fonts, and CSS in a dependency graph. Webpack is used to run and build the app. It also provides dead asset elimination, so you only build elements into your dist/ folder that your application actually needs. Furthermore it provides easier code splitting. 
+- The frontend uses Webpack as a module bundler, to enable hot module replacement and module bundling. It puts all of your assets, including Javascript, images, fonts, and CSS in a dependency graph. Webpack is used to run and build the app. It also provides dead asset elimination, so you only build elements into your dist folder that your application actually needs. Furthermore it provides easier code splitting. 
+- The application uses mobx-state-tree for application state management
 
-### Process to create a new component
-TODO: genaue anleitung aus notizen (label-studio setup.txt)
+## Creating a new component (following [this](https://www.youtube.com/watch?v=TEtPUjBlM2M) webinar)
 
+1. Go to src\tags\visual and create a new JS file.
+1. Stick in your new implementation to the other tag files, that are in this folder (in this case we will stick to Style.js and copy it into our new file Layout.js)
+1. Rename the const Model to LayoutModel, and replace it as well in all other properties. To have a more closer look at all the things that you have to change, you can checkout to the branch ```feature/youtube_tutorial``` and look at the files. You can have a look at the code at ```src\tags\visual\Layout.js```. In the HtxStyle you will return the HTML-code you want to render, when you will later use the XML Tags in your example specific config.xml files.
+1. In ```src\tags\visual\index.js``` import and export your newly created LayoutModel
+1. In src/examples you can copy a simple example folder, like /image_bbox and rename it to the new examples name (in this case: layout_horizontal)
+1. In the copied folder open index.js open ```src\examples\layout_horizontal\index.js``` and export ```LayoutHorizontal = { config, tasks, annotation };```
+1. In ```src\examples\layout_horizontal\config.xml``` insert your new Component as an XML-tag: ```<Layout>...</Layout>```
+1. Go to file ```src\env\development.js```, add your new component (e.g. ```import { LayoutHorizontal } from "../examples/layout_horizontal"```) and set ```const data = LayoutHorizontal;``` to have it as an preview in development mode
 
+Optional:
+
+8. As we want to have our children rendered in our new component Layout we'll have to import Tree and Types from ```src\core``` to our file ```src\tags\visual\Layout.js```. We can now use these imported functionality to add the property children to the LayoutModel, which will ensure that all its provided child types will be rendered.
+9. Also we can add a new porperty ```layout```, which will later define our CSS-styles that are used for our layout component. As a fallback for the layout property we use the horizontal config. To use a normal div-like behaving container one could use the component View.
+10. In the end in HtxStyle we will render a div with the choosen style and inside it render its children using ```Tree.renderChildren(item, item.annotation)```
 
 <br/>
 
