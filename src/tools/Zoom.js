@@ -54,7 +54,7 @@ const ToolView = observer(({ item }) => {
       <Tool
         icon={<IconZoomOut />}
         ariaLabel="zoom-out"
-        label="Zoom Out"
+        label="Zoom Out mein jutster"
         shortcut="ctrl+minus"
         onClick={() => {
           item.handleZoom(-1);
