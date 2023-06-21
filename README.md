@@ -20,6 +20,7 @@ yarn run build:module
 ```
 But as on Windows OS commands like "BUILD_MODULE=true", do not work and we rather need to set them with the set command, you will need to run following:
 ```
+set NODE_ENV=production
 set BUILD_MODULE=true
 set BUILD_NO_HASH=true 
 set BUILD_NO_CHUNKS=true
