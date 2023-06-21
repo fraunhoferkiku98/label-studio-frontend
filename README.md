@@ -12,6 +12,27 @@ Frontend, as its name suggests, is the frontend library developed using React an
 <br/>
 
 
+## Creating a new build
+
+If you have an UNIX OS, one can simply run 
+```
+yarn run build:module
+```
+But as on Windows OS commands like "BUILD_MODULE=true", do not work and we rather need to set them with the set command, you will need to run following:
+```
+set BUILD_MODULE=true
+set BUILD_NO_HASH=true 
+set BUILD_NO_CHUNKS=true
+
+yarn run build
+```
+### Insert it into LabelStudio
+1. In the label-studio repo go to `label_studio\frontend\dist\lsf` and delete the folders `css` and `js`. 
+1. In the label-studio-frontend repo go to `build\static` and copy the folders `css` and `js`.
+1. Paste these folders into `label_studio\frontend\dist\lsf` in the label-studio repo.
+
+
+<br/>
 
 ## Development
 
